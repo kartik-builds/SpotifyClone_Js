@@ -98,7 +98,14 @@ nav {
     color: #b3b3b3;
     cursor: pointer;
 }
-
+.install:hover{
+    transition: scale(1.05);
+    transition-duration: 250ms;
+}
+.sign:hover{
+    transition: scale(1.05);
+    transition-duration: 250ms;
+}
 button {
     padding: 14px 28px;
     border-radius: 50px;
@@ -110,7 +117,11 @@ button {
     font-size: 15px;
 }
 
-button:hover {
+.hide-mobile:hover {
+    transform: scale(1.05);
+    transition-duration: 250ms;
+}
+button:hover{
     transform: scale(1.05);
 }
 @media screen and (max-width: 900px) {
