@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Spotify Clone</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <img src="assets/spotify.svg" width="64" alt="spotifylogo" class="spotifylogo">
+                <img src="assets/spotify.svg" width="64" alt="spotifylogo" class="spotify-logo">
                 <img src="assets/home.svg" width="40" alt="homelogo" class="home">
             </div>
+            
             <div class="search-box">
                 <img src="assets/search_new.svg" width="40" alt="searchlogo" class="search-icon">
                 <input type="text" placeholder="What do you want to play?">
             </div>
-            <ul>
-                <li><a href="#">Premium</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Download</a></li>
-                <li class="bar">|</li>
-                <li class="install"><img src="assets/install.svg" width="20" alt="installlogo">Install App</li>
-                <li><a href="#" class="sign">Sign up</a></li>
-                <button>Log in</button>
-                </div>
-            </ul>
+
+            <div class="nav-right">
+                <ul>
+                    <li class="hide-mobile"><a href="#">Premium</a></li>
+                    <li class="hide-mobile"><a href="#">Support</a></li>
+                    <li class="hide-mobile"><a href="#">Download</a></li>
+                    <li class="hide-mobile bar">|</li>
+                    <li class="hide-mobile install"><img src="assets/install.svg" width="20" alt="installlogo">Install App</li>
+                    <li><a href="#" class="sign">Sign up</a></li>
+                    <li><button>Log in</button></li>
+                </ul>
+            </div>
         </nav>
     </header>
+    
+    <div class="layout">
+        <aside class="sidebar"></aside>
+        <main class="content"></main>
+    </div>
 </body>
 </html>
