@@ -169,6 +169,7 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: auto;
 }
 .box1{
     max-width: 284px;
@@ -195,11 +196,13 @@ nav {
 }
 .box2{
     height: 175px;
+    z-index: 1;
 }
 .side-footer{
     display: inline-block;
     max-width: 284px;
     width: 100%;
+    z-index: 2;
     font-size: 11px;
     display: flex;
     justify-content: space-around;
@@ -207,4 +210,25 @@ nav {
     gap: 20px;
     flex-wrap: wrap;
     color: #b3b3b3;
+    padding-top: 200px;
+}
+.sidebar{
+    width: 300px;
+    height: 100vh;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.library-header{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-scroll{
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
 }

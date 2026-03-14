@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/spotifylogo.svg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <nav>
@@ -14,7 +16,7 @@
                 <img src="assets/spotify.svg" width="64" alt="spotifylogo" class="spotify-logo">
                 <img src="assets/home.svg" width="40" alt="homelogo" class="home">
             </div>
-            
+
             <div class="search-box">
                 <img src="assets/search_new.svg" width="40" alt="searchlogo" class="search-icon">
                 <input type="text" placeholder="What do you want to play?">
@@ -26,7 +28,8 @@
                     <li class="hide-mobile"><a href="#">Support</a></li>
                     <li class="hide-mobile"><a href="#">Download</a></li>
                     <li class="hide-mobile bar">|</li>
-                    <li class="hide-mobile install"><img src="assets/install.svg" width="20" alt="installlogo">Install App</li>
+                    <li class="hide-mobile install"><img src="assets/install.svg" width="20" alt="installlogo">Install
+                        App</li>
                     <li><a href="#" class="sign">Sign up</a></li>
                     <li><button class="log">Log in</button></li>
                 </ul>
@@ -35,31 +38,47 @@
     </header>
     <div class="layout">
         <aside class="sidebar">
-            <nav class="sidebar_nav"><p>Your Library</p><a href="#">
-                <img src="assets/plus-icon-symbol-by-Vexels.png" width="32px" alt="plus"></nav>
+            <nav class="sidebar_nav">
+                <p>Your Library</p><a href="#">
+                    <img src="assets/plus-icon-symbol-by-Vexels.png" width="32px" alt="plus">
+            </nav>
             </a>
-            <div class="container1">
-                <div class="box1">
-                    <p class="firstchild">Create your first playlist</p>
-                    <p>It's easy,we'll help you</p>
-                    <button class="log play">Create playlist</button>
+
+            <div class="sidebar">
+
+                <div class="library-header">
+                    <h3>Your Library</h3>
+                    <button>+ Create</button>
                 </div>
-                <div class="box1 box2">
-                    <p class="firstchild">Let's find some podcasts to follow</p>
-                    <p>We'll keep you updated on new episodes</p>
-                    <button class="log play">Browse podcasts</button>
+
+                <div class="sidebar-scroll">
+
+                    <div class="card">
+                        <h4>Create your first playlist</h4>
+                        <button>Create playlist</button>
+                    </div>
+
+                    <div class="card">
+                        <h4>Let's find some podcasts to follow</h4>
+                        <p>We'll keep you updated on new episodes</p>
+                        <button>Browse podcasts</button>
+                    </div>
+
+                    <div class="footer-links">
+                        <a href="#">Legal</a>
+                        <a href="#">Safety & Privacy Center</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">About Ads</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+
                 </div>
-                <footer class="side-footer">
-                    <p>Legal</p>
-                    <p>Safety&PrivacyCenter</p>
-                    <p>PrivacyPolicy</p>
-                    <p>Cookies</p>
-                    <p>About Ads</p>
-                    <p>Accessibility</p>
-                    <p>Cookies</p>
-                </footer>
-            </aside>
+
+            </div>
+        </aside>
         <main class="content"></main>
     </div>
 </body>
+
 </html>
