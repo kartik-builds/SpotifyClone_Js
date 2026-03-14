@@ -196,6 +196,15 @@ nav {
 .box2{
     height: 175px;
 }
-side-footer p{
-    
+.side-footer{
+    display: inline-block;
+    max-width: 284px;
+    width: 100%;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: #b3b3b3;
 }
