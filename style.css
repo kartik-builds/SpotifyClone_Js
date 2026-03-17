@@ -156,12 +156,13 @@ nav {
 
 .container_new {
     max-width: 100%;
-    /* width: 1230px; */
     display: flex;
     gap: 20px
 }
 
 .sidebar {
+    max-width: 100%;
+    width: 345px;
     height: 89vh;
     background: #121212;
     color: white;
@@ -348,4 +349,18 @@ hr {
 /* Bottom */
 .footer-bottom {
     font-size: 13px;
+}
+.playbar{
+    position: sticky;
+    bottom: 0;
+    background-color: yellowgreen;
+    color: white;
+    height: 45px;
+}
+.playtools{
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 20px;
 }
