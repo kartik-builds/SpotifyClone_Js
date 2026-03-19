@@ -46,7 +46,7 @@ async function main() {
         e.addEventListener("click",()=>{
             const track = e.getAttribute("data-track")
             console.log("Playing:", track.replaceAll("%20"," ").replace(".mp3", ""))
-            playMusic(track)
+            // playMusic(track)
         })
     })
 }

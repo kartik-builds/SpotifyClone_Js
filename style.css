@@ -390,6 +390,7 @@ hr {
     background-color: yellowgreen;
     color: white;
     height: 45px;
+    border-radius: 10px;
 }
 
 .playtools {
@@ -398,4 +399,21 @@ hr {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+.seekbar{
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #ff0000;
+    width: 98%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    left: 10px;
+}
+.circle{
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    cursor: pointer;
 }
