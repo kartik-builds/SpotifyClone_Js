@@ -20,6 +20,7 @@ const playMusic = (track)=>{
     // let audio = new Audio("/songs/" + track)
     currentSong.src = "/songs/" + track
     currentSong.play()
+    play.src = "assets/pause.svg"
 }
 async function main() {
     let songs = await getSongs()
@@ -46,8 +47,19 @@ async function main() {
         e.addEventListener("click",()=>{
             const track = e.getAttribute("data-track")
             console.log("Playing:", track.replaceAll("%20"," ").replace(".mp3", ""))
-            // playMusic(track)
+            playMusic(track)
         })
+    })
+    //Add event listener to play and pause
+    play.addEventListener("click",()=>{
+        if(currentSong.paused){
+            currentSong.play()
+            play.src = "assets/pause.svg"
+        }
+        else{
+            currentSong.pause()
+            play.src = "assets/play.svg"
+        }
     })
 }
 main()
