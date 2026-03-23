@@ -22,7 +22,9 @@ function updateLibraryIcons() {
     document.querySelectorAll(".song-list li").forEach(li => {
         let track = li.getAttribute("data-track");
         let icon = li.querySelector(".playicon img");
-
+        if (track === currentTrack && !currentSong.ended) {
+            icon.src = "assets/play.svg";
+        }
         if (track === currentTrack && !currentSong.paused) {
             icon.src = "assets/pause.svg";
         } else {
@@ -41,6 +43,7 @@ const playMusic = (track) => {
     console.log(songinfo);
     document.querySelector(".songinfo .songName").innerText = songinfo
     updateLibraryIcons(); // sync
+    //change the time of the song in the playbar
 }
 
 async function main() {
@@ -100,6 +103,7 @@ async function main() {
             currentSong.play()
             play.src = "assets/pause.svg"
         }
+
         else {
             currentSong.pause()
             play.src = "assets/play.svg"
@@ -107,5 +111,69 @@ async function main() {
     })
     currentSong.addEventListener("play", updateLibraryIcons);
     currentSong.addEventListener("pause", updateLibraryIcons);
+    // Update progress bar as the song plays
+    currentSong.addEventListener("timeupdate", () => {
+        let progress = (currentSong.currentTime / currentSong.duration) * 100;
+        document.querySelector(".progress").style.width = progress + "%"
+    })
+    // update the time of the song in the playbar
+    currentSong.addEventListener("timeupdate", () => {
+        if (!isNaN(currentSong.duration)) {
+            let currentMinutes = Math.floor(currentSong.currentTime / 60);
+            let currentSeconds = Math.floor(currentSong.currentTime % 60);
+            let durationMinutes = Math.floor(currentSong.duration / 60);
+            let durationSeconds = Math.floor(currentSong.duration % 60);
+            document.querySelector(".songtime").innerText = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`
+        }
+        else {
+            document.querySelector(".songtime").innerText = `0:00 / 0:00`
+        }
+    })
+    // Seekbar functionality
+    document.querySelector(".seekbar").addEventListener("click", (e) => {
+        const seekBar = e.currentTarget;
+        const rect = seekBar.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        currentSong.currentTime = pos * currentSong.duration;
+    });
+    let isDragging = false;
+    let wasPlaying = false;
+    const seekbar = document.querySelector(".seekbar");
+    // Start dragging
+    seekbar.addEventListener("mousedown", () => {
+        isDragging = true;
+        wasPlaying = !currentSong.paused;
+
+        // Pause while dragging
+        currentSong.pause();
+    });
+    // Stop dragging
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+        // Resume playback if it was playing before dragging
+        if (wasPlaying) {
+            currentSong.play();
+        }
+        document.querySelector(".progress").classList.remove("no-transition");
+    });
+    // Drag movement
+    document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const rect = seekbar.getBoundingClientRect();
+        let pos = (e.clientX - rect.left) / rect.width;
+        // Clamp between 0 and 1 (IMPORTANT)
+        pos = Math.max(0, Math.min(1, pos));
+        currentSong.currentTime = pos * currentSong.duration;
+        document.body.style.userSelect = "none"; // Prevent text selection while dragging
+    });
+    seekbar.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        const rect = seekbar.getBoundingClientRect();
+        let pos = (e.clientX - rect.left) / rect.width;
+        pos = Math.max(0, Math.min(1, pos));
+        currentSong.currentTime = pos * currentSong.duration;
+        document.querySelector(".progress").classList.add("no-transition");
+    });
+
 }
 main()
