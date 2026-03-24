@@ -309,6 +309,7 @@ main h1 {
 .img1 img {
     padding-top: 20px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 main .artist {
@@ -414,16 +415,18 @@ hr {
 } */
 .playbar-top{
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: 20px;
     align-items: center;
 }
 
 /* Song info */
 .songinfo {
-    width: 30%;
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    justify-self: start;
 }
 
 /* Controls */
@@ -431,6 +434,8 @@ hr {
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-self: center;
+    grid-column: 2;
 }
 
 .controls img {
@@ -449,9 +454,10 @@ hr {
 .songtime {
     font-size: 14px;
     color: #ffffff;
-    width: 30%;
     text-align: right;
     font-weight: 600;
+    justify-self: end;
+    grid-column: 4;
 }
 
 /* Seekbar */
@@ -484,6 +490,7 @@ hr {
     gap: 8px;
     width: 140px;
     justify-self: end;
+    grid-column: 3;
 }
 .volumeBar{
     width: 100%;

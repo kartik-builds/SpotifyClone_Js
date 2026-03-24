@@ -17,6 +17,8 @@ async function getSongs() {
     return songs
 }
 function updateLibraryIcons() {
+    if (!currentSong.src) return; // Exit if no song is loaded
+    
     let currentTrack = currentSong.src.split("/songs/")[1];
 
     document.querySelectorAll(".song-list li").forEach(li => {
@@ -193,7 +195,7 @@ async function main() {
     const volumeProgress = document.querySelector(".volumeProgress");
 
     // Set default volume
-    currentSong.volume = 0.5;
+    currentSong.volume = 1.0;
     volumeProgress.style.width = "100%";
     // Update tooltip on load
     function updateVolumeTooltip() {
@@ -274,5 +276,12 @@ async function main() {
             updateVolumeIcon();
         }
     });
+    // Add click event listeners to trending songs
+    document.querySelectorAll(".trending-song").forEach(img => {
+    img.addEventListener("click", () => {
+        const track = img.getAttribute("data-track");
+        playMusic(track);
+    });
+});
 }
 main()
