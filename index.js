@@ -195,7 +195,11 @@ async function main() {
     // Set default volume
     currentSong.volume = 0.5;
     volumeProgress.style.width = "100%";
-
+    // Update tooltip on load
+    function updateVolumeTooltip() {
+        let percent = Math.round(currentSong.volume * 100);
+        volumeBar.title = "Volume: " + percent + "%";
+    }
     // Click to change volume
     volumeBar.addEventListener("click", (e) => {
         const rect = volumeBar.getBoundingClientRect();
@@ -206,6 +210,7 @@ async function main() {
 
         currentSong.volume = percent;
         volumeProgress.style.width = (percent * 100) + "%";
+        updateVolumeTooltip();
     });
     let isVolDragging = false;
 
@@ -228,19 +233,47 @@ async function main() {
         currentSong.volume = percent;
         volumeProgress.style.width = (percent * 100) + "%";
         document.body.style.userSelect = "none"; // Prevent text selection while dragging
+        updateVolumeTooltip();
     });
     //adding mute functionality
     const volButton = document.querySelector(".volbutton");
-    volButton.addEventListener("click", () => {
-        if (currentSong.muted) {
-            currentSong.muted = false;
-            volButton.src = "assets/volume.svg";
-            volumeProgress.style.width = (currentSong.volume * 100) + "%";
-        } else {
-            currentSong.muted = true;
+    let previousVolume = currentSong.volume; // Store previous volume for unmute
+
+    function updateVolumeIcon() {
+        if (currentSong.volume === 0 || currentSong.muted) {
             volButton.src = "assets/volume_mute.svg";
+        } else if (currentSong.volume < 0.7) {
+            volButton.src = "assets/volume_low.svg";
+        } else {
+            volButton.src = "assets/volume.svg";
+        }
+    }
+
+    volButton.addEventListener("click", () => {
+        if (currentSong.volume === 0 || currentSong.muted) {
+            // Unmute
+            currentSong.volume = previousVolume || 0.5;
+            currentSong.muted = false;
+            volumeProgress.style.width = (currentSong.volume * 100) + "%";
+            updateVolumeTooltip();
+        } else {
+            // Mute
+            previousVolume = currentSong.volume;
+            currentSong.volume = 0;
+            currentSong.muted = true;
             volumeProgress.style.width = "0%";
+            updateVolumeTooltip();
+        }
+        updateVolumeIcon();
+    });
+
+    // Update icon when volume changes via slider
+    volumeBar.addEventListener("click", updateVolumeIcon);
+    document.addEventListener("mousemove", (e) => {
+        if (isVolDragging) {
+            updateVolumeIcon();
         }
     });
+
 }
 main()
