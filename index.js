@@ -18,7 +18,7 @@ async function getSongs() {
 }
 function updateLibraryIcons() {
     if (!currentSong.src) return; // Exit if no song is loaded
-    
+
     let currentTrack = currentSong.src.split("/songs/")[1];
 
     document.querySelectorAll(".song-list li").forEach(li => {
@@ -276,12 +276,5 @@ async function main() {
             updateVolumeIcon();
         }
     });
-    // Add click event listeners to trending songs
-    document.querySelectorAll(".trending-song").forEach(img => {
-    img.addEventListener("click", () => {
-        const track = img.getAttribute("data-track");
-        playMusic(track);
-    });
-});
 }
 main()
