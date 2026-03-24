@@ -182,12 +182,65 @@ async function main() {
         playMusic(songs[nextIndex]);
     });
     // adding event listener to the previous button
-    document.getElementById("previous").addEventListener("click",()=>{
+    document.getElementById("previous").addEventListener("click", () => {
         let currentTrack = currentSong.src.split("/songs/")[1];
         let currentIndex = songs.indexOf(currentTrack);
         let previousIndex = (currentIndex - 1 + songs.length) % songs.length;
         playMusic(songs[previousIndex]);
     })
     // adding event listener to the volume slider
+    const volumeBar = document.querySelector(".volumeBar");
+    const volumeProgress = document.querySelector(".volumeProgress");
+
+    // Set default volume
+    currentSong.volume = 0.5;
+    volumeProgress.style.width = "100%";
+
+    // Click to change volume
+    volumeBar.addEventListener("click", (e) => {
+        const rect = volumeBar.getBoundingClientRect();
+        let percent = (e.clientX - rect.left) / rect.width;
+
+        // Clamp between 0 and 1
+        percent = Math.max(0, Math.min(1, percent));
+
+        currentSong.volume = percent;
+        volumeProgress.style.width = (percent * 100) + "%";
+    });
+    let isVolDragging = false;
+
+    volumeBar.addEventListener("mousedown", () => {
+        isVolDragging = true;
+    });
+
+    document.addEventListener("mouseup", () => {
+        isVolDragging = false;
+    });
+
+    document.addEventListener("mousemove", (e) => {
+        if (!isVolDragging) return;
+
+        const rect = volumeBar.getBoundingClientRect();
+        let percent = (e.clientX - rect.left) / rect.width;
+
+        percent = Math.max(0, Math.min(1, percent));
+
+        currentSong.volume = percent;
+        volumeProgress.style.width = (percent * 100) + "%";
+        document.body.style.userSelect = "none"; // Prevent text selection while dragging
+    });
+    //adding mute functionality
+    const volButton = document.querySelector(".volbutton");
+    volButton.addEventListener("click", () => {
+        if (currentSong.muted) {
+            currentSong.muted = false;
+            volButton.src = "assets/volume.svg";
+            volumeProgress.style.width = (currentSong.volume * 100) + "%";
+        } else {
+            currentSong.muted = true;
+            volButton.src = "assets/volume_mute.svg";
+            volumeProgress.style.width = "0%";
+        }
+    });
 }
 main()
