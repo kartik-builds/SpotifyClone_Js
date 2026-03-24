@@ -473,3 +473,12 @@ hr {
 .progress.no-transition {
     transition: none;
 }
+.container_vol{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    max-width: 170px;
+    width: 100%;
+    background-color: red;
+}

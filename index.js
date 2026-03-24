@@ -188,5 +188,6 @@ async function main() {
         let previousIndex = (currentIndex - 1 + songs.length) % songs.length;
         playMusic(songs[previousIndex]);
     })
+    // adding event listener to the volume slider
 }
 main()
