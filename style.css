@@ -212,11 +212,13 @@ nav {
     margin: 10px 0;
     border-radius: 10px;
 }
+
 .song-icon {
     cursor: pointer;
     flex-shrink: 0;
     cursor: pointer;
 }
+
 .Info {
     display: flex;
     flex-direction: column;
@@ -225,17 +227,20 @@ nav {
     flex: 1;
     cursor: pointer;
 }
+
 .song-name {
     color: #fff;
     font-size: 14px;
     margin: 0;
     font-weight: 500;
 }
+
 .artist-name {
     color: #b3b3b3;
     font-size: 12px;
     margin: 4px 0 0 0;
 }
+
 .playicon {
     width: 30px;
     height: 30px;
@@ -293,6 +298,8 @@ main {
     border-radius: 10px;
     color: white;
     padding: 25px;
+    padding-bottom: 80px;
+    /* same height as playbar */
 }
 
 main h1 {
@@ -385,15 +392,18 @@ hr {
 }
 
 .playbar {
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
     background: #181818;
-    border-radius: 10px;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    height: 56px;
+    z-index: 1000;
+    /* stays above everything */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
 /* Top row */
@@ -427,7 +437,7 @@ hr {
 
 .controls img:hover {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* Time */
@@ -453,10 +463,12 @@ hr {
 .progress {
     height: 100%;
     width: 0%;
-    background: #1db954; /* Spotify green */
+    background: #1db954;
+    /* Spotify green */
     border-radius: 10px;
     transition: width 0.1s linear;
 }
+
 /*  Disable transition when dragging */
 .progress.no-transition {
     transition: none;

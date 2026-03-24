@@ -174,6 +174,19 @@ async function main() {
         currentSong.currentTime = pos * currentSong.duration;
         document.querySelector(".progress").classList.add("no-transition");
     });
-
+    // adding functionality to the next button
+    document.getElementById("next").addEventListener("click", () => {
+        let currentTrack = currentSong.src.split("/songs/")[1];
+        let currentIndex = songs.indexOf(currentTrack);
+        let nextIndex = (currentIndex + 1) % songs.length;
+        playMusic(songs[nextIndex]);
+    });
+    // adding event listener to the previous button
+    document.getElementById("previous").addEventListener("click",()=>{
+        let currentTrack = currentSong.src.split("/songs/")[1];
+        let currentIndex = songs.indexOf(currentTrack);
+        let previousIndex = (currentIndex - 1 + songs.length) % songs.length;
+        playMusic(songs[previousIndex]);
+    })
 }
 main()
