@@ -276,5 +276,6 @@ async function main() {
             updateVolumeIcon();
         }
     });
+    // adding functionality to the login button
 }
 main()
