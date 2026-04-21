@@ -410,6 +410,10 @@ hr {
 .footer-bottom {
     font-size: 13px;
 }
+.footer-bottom:hover{
+    color: #1db954;
+    cursor: pointer;
+}
 
 .playbar {
     position: fixed;
