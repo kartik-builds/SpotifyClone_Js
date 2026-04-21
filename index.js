@@ -158,6 +158,22 @@ async function main() {
     //     }
     //     document.querySelector(".progress").classList.remove("no-transition");
     // });
+    // Stop dragging
+    document.addEventListener("mouseup", () => {
+        if (isDragging) { // ONLY run this if we were actually dragging
+            isDragging = false;
+
+            // Resume playback if it was playing before dragging
+            if (wasPlaying) {
+                currentSong.play();
+            }
+
+            // Reset wasPlaying so it doesn't accidentally trigger later
+            wasPlaying = false;
+
+            document.querySelector(".progress").classList.remove("no-transition");
+        }
+    });
     // Drag movement
     document.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
