@@ -68,9 +68,23 @@ async function main() {
             </div>
         </li>`
     }
+    // Track the currently playing song element
+    let currentPlayingSongElement = null;
+
     // Adding event listeners to play icons
     // Adding event listeners to play icons
     Array.from(document.querySelector(".song-list").getElementsByTagName("li")).forEach(e => {
+        // Add hover effects
+        e.addEventListener("mouseenter", () => {
+            e.style.borderColor = "#1db954";
+        });
+        e.addEventListener("mouseleave", () => {
+            // Only change back to white if this song isn't the currently playing one
+            if (e !== currentPlayingSongElement) {
+                e.style.borderColor = "white";
+            }
+        });
+
         e.addEventListener("click", () => {
             const track = e.getAttribute("data-track");
 
@@ -79,8 +93,12 @@ async function main() {
                 li.style.borderColor = "white";
             });
 
+            // Mark this as the currently playing element
+            currentPlayingSongElement = e;
+
             // Highlight the clicked song with green border
             e.style.borderColor = "#1db954";
+
 
             // 1. Check if the clicked song is ALREADY the loaded song
             if (currentSong.src.includes(track)) {
