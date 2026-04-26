@@ -74,6 +74,14 @@ async function main() {
         e.addEventListener("click", () => {
             const track = e.getAttribute("data-track");
 
+            // Reset border color on all songs back to white
+            document.querySelectorAll(".song-list ul li").forEach(li => {
+                li.style.borderColor = "white";
+            });
+
+            // Highlight the clicked song with green border
+            e.style.borderColor = "#1db954";
+
             // 1. Check if the clicked song is ALREADY the loaded song
             if (currentSong.src.includes(track)) {
                 // If it's the same song, toggle play/pause
